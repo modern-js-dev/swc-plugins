@@ -4,9 +4,7 @@ use binding_types::{IntoRawConfig, TransformConfigNapi};
 use napi::{bindgen_prelude::AsyncTask, Env, JsObject, Result, Status, Task};
 
 use napi_derive::napi;
-use shared::{
-  serde_json,
-};
+use shared::serde_json;
 use swc_core::{
   base::{
     config::{JsMinifyOptions, TerserSourceMapOption},
@@ -27,6 +25,9 @@ use std::{
   },
 };
 use swc_plugins_core::types::TransformConfig;
+
+mod exit;
+pub use exit::terminate_process;
 
 // ===== Internal Rust struct under the hood =====
 pub struct Compiler {
